@@ -31,6 +31,6 @@ def notify_show(data, bufferp, uber_empty, tagsn, isdisplayed, ishilight, prefix
     if ishilight == "1" or "notify_private" in l and not is_displayed(bufferp):
         nick = prefix[1:]
         os.system(command + nick+ ": " + message + "&")
-    weechat.prnt(weechat.current_buffer(),data + "\n" + bufferp + "\n" + uber_empty + "\n" + tagsn + "\n" + isdisplayed + "\n" + ishilight + "\n" + prefix + "\n" + message  + "\n")
+    #weechat.prnt(weechat.current_buffer(),data + "\n" + bufferp + "\n" + uber_empty + "\n" + tagsn + "\n" + isdisplayed + "\n" + ishilight + "\n" + prefix + "\n" + message  + "\n")
     return weechat.WEECHAT_RC_OK
 
