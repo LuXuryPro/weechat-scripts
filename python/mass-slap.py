@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2012 by antiquo <>
+# Copyright (c) 2012 by the_godfather
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
 #
 # This is mass-slap script for weechat. Very usefull for anoye everyone on channel ;-)
 #
-#
+
 import weechat as w
 
 w.register("mass-slap","antiquo","1.0","GPL3","Slaps (highlights) everyone on current channel","","")
@@ -47,7 +47,7 @@ def slap_all(data, buffer, args):
     for nick in nicklist:
         nicks.append(nick)
     if len(nicks)>50:
-        w.prnt("","Too much nicks on channel - "+str(len(nicks))+" Be carefull :)")
+        w.prnt("","Too much nicks on channel: "+str(len(nicks))+" Be carefull :)")
     else:
         nicks.sort(key=str.lower) #sort table
         string = ' '.join(str(n) for n in nicks) #create string from table
@@ -55,6 +55,5 @@ def slap_all(data, buffer, args):
         #w.prnt("",str(len(nicks))) #for testing
         w.command(w.current_buffer(),"/me slaps: "+string) #put on channel
         return w.WEECHAT_RC_OK
-        
 
 hook = w.hook_command("mass-slap", "","","","""""""""""","slap_all", "")
