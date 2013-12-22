@@ -29,8 +29,8 @@ def inactive():
 def notify_show(data, bufferp, uber_empty, tagsn, isdisplayed, ishilight, prefix, message):
     l = tagsn.split(",")
     if ishilight == "1" or "notify_private" in l and not is_displayed(bufferp):
-        nick = prefix[1:]
-        os.system(command + nick+ ": " + message + "&")
+        nick = l[-2].split("_")[-1]
+        os.system(command + nick + ": " + message + "&")
     #weechat.prnt(weechat.current_buffer(),data + "\n" + bufferp + "\n" + uber_empty + "\n" + tagsn + "\n" + isdisplayed + "\n" + ishilight + "\n" + prefix + "\n" + message  + "\n")
     return weechat.WEECHAT_RC_OK
 
