@@ -21,12 +21,12 @@
 
 import weechat as w
 
-w.register("mass-slap","antiquo","1.0","GPL3","Slaps (highlights) everyone on current channel","","")
+w.register("mass-slap","the_godfather","1.0","GPL3","Slaps (highlights) everyone on current channel","","")
 
 def get_nicklist():
     #this function is particulary taked from hl_nicks.py script maden by nesthib.
     #I think that it can be writen more cleary for this special situation, but anyway it works properly so i use it.
-    nicklist = {}
+    nicklist = []
     infolist_nicklist = w.infolist_get('nicklist', w.current_buffer(), '')
     while w.infolist_next(infolist_nicklist):
         nick = w.infolist_string(infolist_nicklist, 'name')
@@ -35,17 +35,13 @@ def get_nicklist():
         if nick_type != 'nick': # just for sure :)
             pass
         else:
-            if not nicklist.has_key(nick):
-                nicklist[nick]=[]
-            nicklist[nick].append(nick)
+            if not nick in nicklist:
+                nicklist.append(nick)
     w.infolist_free(infolist_nicklist)
     return nicklist
 
 def slap_all(data, buffer, args):
-    nicklist = get_nicklist()
-    nicks = []
-    for nick in nicklist:
-        nicks.append(nick)
+    nicks = get_nicklist()
     if len(nicks)>50:
         w.prnt("","Too much nicks on channel: "+str(len(nicks))+" Be carefull :)")
     else:
@@ -56,4 +52,4 @@ def slap_all(data, buffer, args):
         w.command(w.current_buffer(),"/me slaps: "+string) #put on channel
         return w.WEECHAT_RC_OK
 
-hook = w.hook_command("mass-slap", "","","","""""""""""","slap_all", "")
+hook = w.hook_command("mass-slap", "","","","","slap_all", "")
