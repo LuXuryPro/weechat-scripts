@@ -1,9 +1,10 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 import weechat
 import os
 
-weechat.register("xnotify", "", "0.0.5", "GPL", "xmessage notification system for weechat", "", "")
+weechat.register("xnotify","", "", "", "xmessage notification system for weechat", "", "")
 weechat.hook_print("", "irc_privmsg", "", 1, "notify_show", "")
 
 command = "xmessage -center -buttons OK:0 -default OK "
